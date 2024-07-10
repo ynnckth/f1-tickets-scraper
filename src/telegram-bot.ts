@@ -10,8 +10,8 @@ const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN ?? "";
 const bot = new TelegramBot(TELEGRAM_TOKEN, {polling: true});
 
 bot.onText(/\/init/, async (message) => {
-    // Send notification daily at 10am
-    schedule.scheduleJob('25 12 * * *', async () => {
+    // Send notification daily at 8am
+    schedule.scheduleJob('00 08 * * *', async () => {
         const tickets = await scrapeTickets();
         const content = `Available F1 SG GP 3-day tickets ${format(new Date(), "dd.MM.yyyy")}:\n`
             + `${tickets ? tickets.map(t => `${t.grandstandName}: ${t.price}`).join("\n - ") : 'None'}`
