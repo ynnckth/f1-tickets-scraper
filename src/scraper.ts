@@ -7,14 +7,14 @@ type Ticket = {
   isAvailable: boolean;
 }
 
-const url = 'https://singaporegp.sg/en/tickets/general-tickets/grandstands/';
+export const url = 'https://singaporegp.sg/en/tickets/general-tickets/grandstands/';
 
 async function fetchHTML(url: string): Promise<string> {
   const { data } = await axios.get(url);
   return data as string;
 }
 
-async function scrapeTickets() {
+export async function scrapeTickets(): Promise<Ticket[] | undefined> {
   try {
     const html = await fetchHTML(url);
     const $ = cheerio.load(html);
@@ -37,6 +37,7 @@ async function scrapeTickets() {
             && !ticket.grandstandName.toLowerCase().includes("sunday"))
 
     available3DayTickets.forEach(printTicket);
+    return available3DayTickets;
   } catch (error) {
     console.error('Error fetching or parsing the page:', error);
   }
@@ -45,6 +46,3 @@ async function scrapeTickets() {
 function printTicket(ticket: Ticket) {
   console.log(`${ticket.grandstandName}: ${ticket.price}`)
 }
-
-scrapeTickets().then(() => console.log("Done"));
-

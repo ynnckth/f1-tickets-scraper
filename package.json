@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/scraper.ts"
+    "start": "ts-node src/telegram-bot.ts"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +12,17 @@
   "dependencies": {
     "@types/cheerio": "^0.22.35",
     "@types/node": "^20.14.10",
+    "@types/node-telegram-bot-api": "^0.64.7",
     "axios": "^1.7.2",
     "cheerio": "^1.0.0-rc.12",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "node-schedule": "^2.1.1",
+    "node-telegram-bot-api": "^0.66.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "@types/node-schedule": "^2.1.7"
   }
 }
